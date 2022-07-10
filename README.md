@@ -18,12 +18,7 @@ docker-compose up
 # Technical decisions
 
 ## Model generation using swagger spec file
-I've used the swagger specification file provided in form3 documentation to generate go code for the Account ressource model (done at docker build time).
-   
-At first I've also generated the go code for *AccountDetailsResponse*, *AccountCreationResponse* and *AccountCreation* operations, but finally I removed that part and wrote those structs myself because it was already taking very long to generate sources for the Account model alone (due to #refs usage in the spec file which need to be expanded) and since this library won't be used in the future the maintainability is not really an issue. I prefered saving a lot of build time for the reviewer. 
-    
-
-We could have used a template config file for the generator to exclude everything that I do not use (especially validator functions).
+I've used the swagger specification file provided in form3 documentation to generate go code for the Account ressource model (done at docker build time but commented, I pushed the generated model instead to this repository to save 5 minutes of build time).
 
 ## Swagger spec file validation skip
 I turned off the validation of the swagger spec file because it takes very long (since it's the contract for the whole API). I did not modify the spec file whatsoever and the spec won't change for this exercise so I assumed I can trust it and skip validation.
